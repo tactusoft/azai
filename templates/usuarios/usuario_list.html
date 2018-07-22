@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h2><a href="{% url 'usuario_list' %}">Usuarios</a></h2>
+    <a href="{% url "usuario_new" %}">New</a>
+    <table border="1">
+        <thead>
+            <tr>
+            <th>email</th>
+            <th>nombres</th>
+            <th>apellidos</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in object_list %}
+            <tr>
+                <td>{{ e.email }}</td>
+                <td>{{ e.first_name }}</td>
+                <td>{{ e.last_name }}</td>
+                <td><a href="{% url "usuario_view" e.id %}">view</a></td>
+                <td><a href="{% url "usuario_edit" e.id %}">edit</a></td>
+                <td><a href="{% url "usuario_delete" e.id %}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
