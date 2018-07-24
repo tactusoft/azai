@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     
     # Local
     'usuarios.apps.UsuariosConfig',
+    'indicadores.apps.IndicadoresConfig',
 ]
 
 MIDDLEWARE = [
