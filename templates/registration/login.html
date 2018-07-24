@@ -14,8 +14,8 @@
         {% csrf_token %}
 
         <img src="{% static 'images/signin.png' %}" alt="signin">
-        {{ form.username.errors }} {{ form.username }}
-        {{ form.username.password }} {{ form.password }}
+        {{ form.username }} {{ form.username.errors }}
+        {{ form.password }} {{ form.username.password }}
         <div class="fieldWrapper">
             <p>
                 <a href="{% url 'password_reset' %}">¿Olvidaste la contraseña?</a>
@@ -24,7 +24,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
         <input type="hidden" name="next" value="{{ next }}" />
 
-        {% if form.errors %}
+        {% if form.non_field_errors %}
             <div class="alert alert-danger text-left">
                 {{ form.non_field_errors }}
             </div>

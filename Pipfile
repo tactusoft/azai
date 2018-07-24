@@ -8,6 +8,7 @@ django = "*"
 gunicorn = "*"
 django-heroku = "*"
 "django-tables2" = "*"
+pylint = "*"
 
 [dev-packages]
 pylint = "*"

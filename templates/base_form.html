@@ -8,6 +8,7 @@
 {% block body_class %}bg-white{% endblock body_class %}
 
 {% block content %}
+    {{ form.errors }}
     <div class="py-5">
         {% block subtitle %}{% endblock subtitle %}
         <a href="{% block url_back %}{% endblock url_back %}">Volver</a>

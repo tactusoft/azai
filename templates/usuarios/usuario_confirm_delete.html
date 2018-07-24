@@ -1,12 +1,19 @@
-{% extends "base.html" %}
+{% extends 'usuarios/usuario_detail.html' %}
 
-{% block content %}
+{% block title %}Eliminar Usuario{% endblock title %} 
+{% block subtitle %}<h2>Eliminar usuario</h2>{% endblock subtitle %} 
+{% block url_back %}{% url 'usuario_list' %}{% endblock url_back %} 
 
-<h2><a href="{% url 'usuario_list' %}">Volver</a>: Eliminar Usuario?</h2>
+{% block detail_command %}
+    <form class="needs-validation" method="post">
+        {% csrf_token %}
+        <div class="row">
+            {{ form.non_field_errors }}
+        </div>
 
-<form method="post">{% csrf_token %}
-    Confirmar eliminación de "{{ object }}" ?<br>
-    <input type="submit" value="Eliminar" />
-</form>
-
-{% endblock %}
+        <div class="text-center">
+            Confirmar eliminación de "{{ object }}" ?<br><br>
+            <button class="btn btn-primary" type="submit">Eliminar</button>
+        </div>                
+    </form>
+{% endblock detail_command %}

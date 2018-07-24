@@ -3,6 +3,10 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 from .models import Usuario
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 _widgets = {
     'grupo': forms.Select(attrs={'class':'form-control custom-select d-block w-100'}),
     'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder': _('correo')}),
@@ -29,7 +33,10 @@ class CustomUserCreationForm(forms.ModelForm):
 
     def save(self, commit=True):
         # Save the provided password in hashed format
+        logger.info('estoy en save')
         usuario = super().save(commit=False)
+        password = Usuario.objects.make_random_password()
+        usuario.set_password('r4u7T%Y^05')
 
         if commit:
             usuario.save()

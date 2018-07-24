@@ -20,35 +20,21 @@ class UsuarioManager(UserManager):
     def _create_user(self, email, password, **extra_fields):
         """Crea y guarda un usuario con el correo electrónico y la contraseña especificados."""
         
-        logger.debug("email:%s",email)
-
         if not email:
             raise ValueError('The given email must be set')
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
 
-        logger.info("user.grupo:%s",user.grupo)
-        logger.info("user.email:%s",user.email)
-        logger.info("user.first_name:%s",user.first_name)
-        logger.info("user.last_name:%s",user.last_name)
-        logger.info("user.numero_identificacion:%s",user.numero_identificacion)
-        logger.info("user.telefono:%s",user.telefono)
-        logger.info("user.ocupacion:%s",user.ocupacion)
-        
         user.save(using=self._db)
         return user
 
     def create_user(self, email, password=None, **extra_fields):
         """Crea y guarda un usuario regular con el correo electrónico y la contraseña especificados."""
-        
-        logger.info("password:%s",password)
 
         if not password:
             password = self.make_random_password()
         
-        logger.info("password = self.make_random_password() :%s",password)
-
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         
@@ -77,7 +63,7 @@ class Usuario(AbstractUser):
     email = models.EmailField(_('email address'), unique=True) # changes email to unique and blank to false
     numero_identificacion = models.CharField(_('número identificación'), max_length=10, unique=True, blank=False, null=False)
     telefono = models.CharField(_('telefono'), max_length=50, blank=False, null=False)
-    ocupacion = models.CharField(_('ocupación'), max_length=50, blank=False, null=False)
+    ocupacion = models.CharField(_('ocupación'), max_length=50, blank=True, null=False)
 
     fecha_creacion = models.DateTimeField(_('creado'), auto_now_add=True)
     fecha_modificacion = models.DateTimeField(_('modificado'), auto_now=True)
@@ -96,7 +82,7 @@ class Usuario(AbstractUser):
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'numero_identificacion', 'telefono', 'ocupacion' ] # removes email from REQUIRED_FIELDS
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'numero_identificacion', 'telefono' ] # removes email from REQUIRED_FIELDS
 
     def get_absolute_url(self):
         return reverse('usuario', kwargs={'pk': self.pk})

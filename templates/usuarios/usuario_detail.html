@@ -1,11 +1,10 @@
-{% extends 'base_detail.html' %} 
+{% extends 'base_detail.html' %}
 
 {% block title %}Ver Usuario{% endblock title %} 
 {% block subtitle %}<h2>Ver usuario</h2>{% endblock subtitle %} 
 {% block url_back %}{% url 'usuario_list' %}{% endblock url_back %} 
 
 {% block detail_content %}
-
     <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div class="col-md-6 mb-3">
@@ -45,3 +44,6 @@
         </li>
     </ul>
 {% endblock detail_content %}
+
+{% block detail_command %}
+{% endblock detail_command %}
