@@ -7,7 +7,7 @@ name = "pypi"
 django = "*"
 gunicorn = "*"
 django-heroku = "*"
-"django-tables2" = "*"
+django-tables2 = "*"
 
 [dev-packages]
 pylint = "*"
