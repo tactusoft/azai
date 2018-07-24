@@ -4,7 +4,7 @@
 {% load title from django_tables2 %} 
 {% load trans blocktrans from i18n %}
 
-{% block title %}Indicadores{% endblock title %} 
+{% block title %}Nuevo Indicador{% endblock title %} 
 
 {% block content %}
     {% if table.page %}
@@ -19,15 +19,10 @@
                 <th colspan="4">
                     <div class="row">
                         <div class="col-8">
-                            <h2>Indicadores</h2>
+                            <h2>Nuevo Indicador</h2>
                         </div>
                         <div class="col-2">
-                            <a href="{% url 'indicador_new' 1 %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
-                                Crear Indicador
-                            </a>
-                        </div>
-                        <div class="col-2">
-                            <a href="{% url "tipo_indicador_list" %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
+                            <a href="{% url 'indicador_list' 1 %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
                                 Regresar
                             </a>
                         </div>
@@ -109,8 +104,28 @@
             </div>
         </li>
     </ul>
-{% endblock content %}
 
-{% block javascript %}
-{% include 'base/js_table.html' %}
-{% endblock javascript %}
+
+    <div class="numberCircle">1</div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+       <label>{{form.nombre_indicador.label_tag}}</label>
+       {{form.nombre_indicador}}
+    </div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <label>{{form.descripcion_indicador.label_tag}}</label>
+        {{form.descripcion_indicador}}
+    </div>
+
+    <div class="numberCircle" style="margin-top: 40px;">2</div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <label>Método de Cálculo</label>
+        
+    </div>
+
+    <div class="numberCircle" style="margin-top: 40px;">3</div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <label>{{form.periodicidad.label_tag}}</label>
+        {{form.periodicidad}}
+    </div>
+
+{% endblock content %}

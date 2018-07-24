@@ -4,7 +4,7 @@
 {% load title from django_tables2 %} 
 {% load trans blocktrans from i18n %}
 
-{% block title %}Indicadores{% endblock title %} 
+{% block title %}Tipo de Indicadores{% endblock title %} 
 
 {% block content %}
     {% if table.page %}
@@ -19,17 +19,7 @@
                 <th colspan="4">
                     <div class="row">
                         <div class="col-8">
-                            <h2>Indicadores</h2>
-                        </div>
-                        <div class="col-2">
-                            <a href="{% url 'indicador_new' 1 %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
-                                Crear Indicador
-                            </a>
-                        </div>
-                        <div class="col-2">
-                            <a href="{% url "tipo_indicador_list" %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
-                                Regresar
-                            </a>
+                            <h2>Tipo de Indicadores</h2>
                         </div>
                     </div>
                 </th>

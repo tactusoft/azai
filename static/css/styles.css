@@ -244,3 +244,15 @@ div.system-message p.system-message-title {
     font-size: 12px;
     padding: 5px 0 0 12px;
 }
+
+.numberCircle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    background: #2A9FD8;
+    border: 2px solid #2A9FD8;
+    color: #fff;
+    text-align: center;
+    font: 20px Arial, sans-serif;
+  }
