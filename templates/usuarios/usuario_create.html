@@ -1,13 +1,7 @@
-{% extends "base_generic.html" %}
+{% extends 'usuarios/usuario_form.html' %}
 
-{% block content %}
+{% block title %}Nuevo Usuario{% endblock title %}
 
-<h2><a href="{% url 'usuario_list' %}">Usuarios</a>: Edit</h2>
+{% block subtitle %}<h2>Nuevo usuario</h2>{% endblock subtitle %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
-
-{% endblock %}
+{% block form_submit %}Crear usuario{% endblock form_submit %}

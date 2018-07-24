@@ -1,0 +1,42 @@
+{% load static %}
+
+<!-- 
+    <div style="width: 100%;text-align: center;margin-top: 10px;">
+    <img src="{% static 'images/img_avatar.png' %}" alt="Avatar" class="avatar">
+    </div> 
+-->
+
+<div class="sidebar-sticky">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span data-feather="layout"></span>
+                Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span data-feather="clipboard"></span>
+                Reportes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span data-feather="pie-chart"></span>
+                Indicadores
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span data-feather="upload-cloud"></span>
+                Cargar Info
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "usuario_list" %}">
+                <span data-feather="users"></span>
+                Usuarios
+            </a>
+        </li>
+    </ul>
+</div>

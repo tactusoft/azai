@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/form-validation.css' %}">{% endblock css %}
+
+{% block body_class %}bg-white{% endblock body_class %}
+
+{% block content %}
+    <div class="py-5">
+        {% block subtitle %}{% endblock subtitle %}
+        <a href="{% block url_back %}{% endblock url_back %}">Volver</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 order-md-1">
+
+            <form class="needs-validation" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    {{ form.non_field_errors }}
+                </div>
+    
+                {% block form_content %}
+                {% endblock form_content %}
+
+                <hr class="mb-4">
+
+                <div class="text-center">
+                    <button class="btn btn-primary" type="submit">{% block form_submit %}{% endblock form_submit %}</button>
+                </div>                
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

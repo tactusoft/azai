@@ -1,6 +1,246 @@
+body {
+    font-size: .875rem;
+}
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    /* Behind the navbar */
+    padding: 48px 0 0;
+    /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+}
+
 .sidebar-nav {
     margin-top: 20px;
     padding: 0;
     list-style: none;
 }
 
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+    color: inherit;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+/*
+ * Content
+ */
+
+[role="main"] {
+    padding-top: 48px;
+    /* Space for fixed navbar */
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0);
+}
+
+.navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+}
+
+.form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+/*
+ * Utilities
+ */
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.table-hover>tbody>tr:hover>td,
+.table-hover>tbody>tr:hover>th {
+    background-color: rgba(0, 173, 255, .54);
+    color: #000000;
+}
+
+.bg-info {
+    background-color: rgba(0, 173, 255, .54) !important;
+}
+
+
+/* MESSAGES & ERRORS */
+
+ul.messagelist {
+    padding: 0;
+    margin: 0;
+}
+
+ul.messagelist li {
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px 10px 10px 65px;
+    margin: 0 0 10px 0;
+    background: #dfd url(../img/icon-yes.svg) 40px 12px no-repeat;
+    background-size: 16px auto;
+    color: #333;
+}
+
+ul.messagelist li.warning {
+    background: #ffc url(../img/icon-alert.svg) 40px 14px no-repeat;
+    background-size: 14px auto;
+}
+
+ul.messagelist li.error {
+    background: #ffefef url(../img/icon-no.svg) 40px 12px no-repeat;
+    background-size: 16px auto;
+}
+
+.errornote {
+    font-size: 14px;
+    font-weight: 700;
+    display: block;
+    padding: 10px 12px;
+    margin: 0 0 10px 0;
+    color: #ba2121;
+    border: 1px solid #ba2121;
+    border-radius: 4px;
+    background-color: #fff;
+    background-position: 5px 12px;
+}
+
+ul.errorlist {
+    margin: 0 0 4px;
+    padding: 0;
+    color: #ba2121;
+    background: #fff;
+}
+
+ul.errorlist li {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+ul.errorlist li:first-child {
+    margin-top: 0;
+}
+
+ul.errorlist li a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+td ul.errorlist {
+    margin: 0;
+    padding: 0;
+}
+
+td ul.errorlist li {
+    margin: 0;
+}
+
+.form-row.errors {
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #eee;
+    background: none;
+}
+
+.form-row.errors ul.errorlist li {
+    padding-left: 0;
+}
+
+.errors input, .errors select, .errors textarea {
+    border: 1px solid #ba2121;
+}
+
+div.system-message {
+    background: #ffc;
+    margin: 10px;
+    padding: 6px 8px;
+    font-size: .8em;
+}
+
+div.system-message p.system-message-title {
+    padding: 4px 5px 4px 25px;
+    margin: 0;
+    color: #c11;
+    background: #ffefef url(../img/icon-no.svg) 5px 5px no-repeat;
+}
+
+.description {
+    font-size: 12px;
+    padding: 5px 0 0 12px;
+}

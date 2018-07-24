@@ -1,12 +1,12 @@
-{% extends "base_generic.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<h2><a href="{% url 'usuario_list' %}">Books CBV</a>: Delete?</h2>
+<h2><a href="{% url 'usuario_list' %}">Volver</a>: Eliminar Usuario?</h2>
 
 <form method="post">{% csrf_token %}
-    Are you sure you want to delete "{{ object }}" ?<br>
-    <input type="submit" value="Delete" />
+    Confirmar eliminación de "{{ object }}" ?<br>
+    <input type="submit" value="Eliminar" />
 </form>
 
 {% endblock %}

@@ -1,13 +1,76 @@
-{% extends "base_generic.html" %}
+{% extends 'base_form.html' %}
 
-{% block content %}
+{% block title %}Editar Usuario{% endblock title %}
 
-<h2><a href="{% url 'usuario_list' %}">Usuarios</a>: Edit</h2>
+{% block subtitle %}<h2>Editar usuario</h2>{% endblock subtitle %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
+{% block url_back %}{% url 'usuario_list' %}{% endblock url_back %}
 
-{% endblock %}
+{% block form_content %}
+<div class="row">
+        <p class="mb-3 font-weight-bold text-secondary">Información básica</p>
+    </div>
+    <div class="row">
+        <div class="fieldWrapper col-md-6 mb-3">
+            {{ form.grupo.label_tag }}
+            {{ form.grupo }}
+            <div class="invalid-feedback">
+                {{ form.grupo.errors }}                        
+            </div>
+        </div>
+        <div class="fieldWrapper col-md-6 mb-3">
+            <label for="email">&nbsp;</label>
+            {{ form.email }}
+            <div class="invalid-feedback">
+                {{ form.email.errors }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <p class="mb-3 font-weight-bold text-secondary">Datos personales</p>
+    </div>
+    <div class="row">
+        <div class="fieldWrapper col-md-6 mb-3">
+            {{ form.first_name }}
+            <div class="invalid-feedback">
+                {{ form.first_name.errors }}                        
+            </div>
+        </div>
+        <div class="fieldWrapper col-md-6 mb-3">
+            {{ form.last_name }}
+            <div class="invalid-feedback">
+                {{ form.last_name.errors }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="fieldWrapper col-md-6 mb-3">
+            {{ form.numero_identificacion }}
+            <div class="invalid-feedback">
+                {{ form.numero_identificacion.errors }}                        
+            </div>
+        </div>
+        <div class="fieldWrapper col-md-6 mb-3">
+            {{ form.telefono }}
+            <div class="invalid-feedback">
+                {{ form.telefono.errors }}
+            </div>
+        </div>                  
+    </div>
+    <div class="row">
+        <div class="fieldWrapper col-md-6 mb-3">
+            {{ form.ocupacion }}
+            <div class="invalid-feedback">
+                {{ form.ocupacion.errors }}                        
+            </div>
+        </div>
+    </div>                    
+    <hr class="mb-4">
+    <div class="custom-control custom-checkbox">
+        {{ form.is_active }}
+        {{ form.is_active.label }}
+    </div>
+    
+{% endblock form_content %}
+
+{% block form_submit %}Guardar usuario{% endblock form_submit %}

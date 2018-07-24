@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/form-validation.css' %}">{% endblock css %}
+
+{% block body_class %}bg-white{% endblock body_class %}
+
+{% block content %}
+    <div class="py-5">
+        {% block subtitle %}{% endblock subtitle %}
+        <a href="{% block url_back %}{% endblock url_back %}">Volver</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 order-md-1">
+            {% block detail_content %}
+            {% endblock detail_content %}
+        </div>
+    </div>
+    
+{% endblock %}

@@ -20,10 +20,15 @@ from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
+from django.contrib.auth import views as auth_views
 from . import views
+from .forms import CustomAuthForm, CustomPasswordResetForm
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/azai', permanent=True)),
+    path('azai/cuentas/login/', auth_views.login, name='login', kwargs={"authentication_form": CustomAuthForm}),
+    path('azai/cuentas/password_reset/', auth_views.password_reset, name='password_reset', kwargs={"password_reset_form": CustomPasswordResetForm}),
+
     path('azai/', views.HomePageView.as_view(), name='home'),
     path('azai/admin/', admin.site.urls),
     path('azai/usuarios/', include('usuarios.urls')),
