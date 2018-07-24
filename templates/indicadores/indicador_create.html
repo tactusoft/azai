@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% load querystring from django_tables2 %} 
+{% load title from django_tables2 %} 
+{% load trans blocktrans from i18n %}
+
+{% block title %}Nuevo Indicador{% endblock title %} 
+
+{% block content %}
+    {% if table.page %}
+    <div class="table-container">
+    {% endif %}
+
+    {% block table %}
+    <table id="table" class="table table-hover" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
+        {% block table.thead %}
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <div class="row">
+                        <div class="col-8">
+                            <h2>Nuevo Indicador</h2>
+                        </div>
+                        <div class="col-2">
+                            <a href="{% url 'indicador_list' 1 %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
+                                Regresar
+                            </a>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+
+            <tr>
+                {% for column in table.columns %} 
+                    <th {{ column.attrs.th.as_html }}>{{ column.header|title }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        {% endblock table.thead %}
+
+        {% block table.tbody %}
+        <tbody>
+            {% for row in table.page.object_list|default:table.rows %} 
+                {# support pagination #} 
+                {% block table.tbody.row %}
+                
+                <tr class="clickable-row">
+                    {% for column, cell in row.items %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endblock table.tbody.row %} 
+                {% empty %} 
+                
+                {% if table.empty_text %} 
+                    {% block table.tbody.empty_text %}
+                    <tr>
+                        <td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td>
+                    </tr>
+                    {% endblock table.tbody.empty_text %} 
+                {% endif %} 
+            {% endfor %}
+        </tbody>
+        {% endblock table.tbody %} 
+        
+        {% block table.tfoot %}
+        <tfoot></tfoot>
+        {% endblock table.tfoot %}
+    </table>
+    {% endblock table %} 
+    
+    {% if table.page %} 
+        {% block pagination %} 
+        {# bootstrap_pagination table.page url=request.get_full_path #} 
+        {% endblock pagination %}
+    </div>
+    {% endif %}
+
+    <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
+        <li>
+            <div class="col-2" style="max-width: 100% !important;">
+                <a class="nav-link" href="#">
+                    <span data-feather="eye"></span>
+                    Ver
+                </a>
+            </div>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li>
+            <div class="col-2" style="max-width: 100% !important;">
+                <a class="nav-link" href="#">
+                    <span data-feather="edit"></span>
+                    Editar
+                </a>
+            </div>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li>
+            <div class="col-2" style="max-width: 100% !important;">
+                <a class="nav-link" href="#">
+                    <span data-feather="trash"></span>
+                    Borrar
+                </a>
+            </div>
+        </li>
+    </ul>
+
+
+    <div class="numberCircle">1</div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+       <label>{{form.nombre_indicador.label_tag}}</label>
+       {{form.nombre_indicador}}
+    </div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <label>{{form.descripcion_indicador.label_tag}}</label>
+        {{form.descripcion_indicador}}
+    </div>
+
+    <div class="numberCircle" style="margin-top: 40px;">2</div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <label>Método de Cálculo</label>
+        
+    </div>
+
+    <div class="numberCircle" style="margin-top: 40px;">3</div>
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <label>{{form.periodicidad.label_tag}}</label>
+        {{form.periodicidad}}
+    </div>
+
+{% endblock content %}

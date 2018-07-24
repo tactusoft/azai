@@ -33,6 +33,7 @@ urlpatterns = [
     path('azai/admin/', admin.site.urls),
     path('azai/usuarios/', include('usuarios.urls')),
     path('azai/cuentas/', include('django.contrib.auth.urls')),
+    path('azai/indicadores/', include('indicadores.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
