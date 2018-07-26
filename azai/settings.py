@@ -27,7 +27,7 @@ SECRET_KEY = 'e^&+=w+#if!b+4b151fb#@m9(v&38i!srjpnr=)2e-3^+#qckk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sleepy-lowlands-59871.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
