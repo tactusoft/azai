@@ -5,17 +5,14 @@ name = "pypi"
 
 [packages]
 django = "*"
-gunicorn = "*"
-django-heroku = "*"
-<<<<<<< HEAD
 "django-tables2" = "*"
+django-heroku = "*"
+"psycopg2-binary" = "*"
+dj-database-url = "*"
 pylint = "*"
-=======
-django-tables2 = "*"
->>>>>>> cfc686d5ad79343e56a273f7ff4f16b87fa8aba9
+gunicorn = "*"
 
 [dev-packages]
-pylint = "*"
 
 [requires]
 python_version = "3.7"

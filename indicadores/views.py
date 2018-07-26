@@ -3,13 +3,14 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django_tables2 import RequestConfig
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import TipoIndicador, Indicador
 from .tables import TipoIndicadorTable, IndicadorTable
 from .forms import CustomIndicadorCreationForm
 
 # Create your views here.
-class TipoIndicadorList(ListView):
+class TipoIndicadorList(LoginRequiredMixin, ListView):
     model = TipoIndicador
     context_object_name = 'tipo_indicador'
     ordering = ['nombre']
@@ -21,7 +22,7 @@ class TipoIndicadorList(ListView):
         context['table'] = table
         return context
 
-class IndicadorList(ListView):
+class IndicadorList(LoginRequiredMixin, ListView):
     model = Indicador
     context_object_name = 'indicador'
     ordering = ['nombre']
@@ -33,7 +34,7 @@ class IndicadorList(ListView):
         context['table'] = table
         return context
 
-class IndicadorCreate(CreateView):
+class IndicadorCreate(LoginRequiredMixin, CreateView):
     model = Indicador
     form_class = CustomIndicadorCreationForm
     success_url = reverse_lazy('indicador_list')
