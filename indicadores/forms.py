@@ -10,6 +10,8 @@ _widgets = {
 }
 
 class CustomIndicadorCreationForm(forms.ModelForm):
+    estado = forms.IntegerField(widget=forms.HiddenInput(), initial=1) 
+
     class Meta:
         model = Indicador
         fields = ('nombre_indicador','descripcion_indicador','periodicidad')
@@ -17,4 +19,9 @@ class CustomIndicadorCreationForm(forms.ModelForm):
         labels = {
             'nombre': _('Nombre del Indicador'),
         }
+        
+    def __init__(self, *args, **kwargs):
+        tipo_indicador = kwargs.pop('tipo_indicador')
+        super (CustomIndicadorCreationForm,self).__init__(*args,**kwargs)
+        self.fields['tipo_indicador_id'] = forms.IntegerField(widget=forms.HiddenInput(), initial=tipo_indicador)
         

@@ -13,7 +13,7 @@ class TipoIndicadorTable(tables.Table):
         empty_text = "No se encontraron datos"
 
 class IndicadorTable(tables.Table):
-    nombre_indicador = tables.LinkColumn(viewname='indicador_list', args=[A('pk')])
+    nombre_indicador = tables.LinkColumn("indicador_list", kwargs={"tipo_indicador": A("pk")})
 
     class Meta:
         model = TipoIndicador

@@ -105,27 +105,46 @@
         </li>
     </ul>
 
-
+    <form method="POST" class="post-form">{% csrf_token %}
     <div class="numberCircle">1</div>
     <div style="margin-top: 20px;font-weight: bold; font-size: medium">
        <label>{{form.nombre_indicador.label_tag}}</label>
        {{form.nombre_indicador}}
+       <div class="invalid-feedback">
+            {{ form.nombre_indicador.errors }}
+        </div>
     </div>
     <div style="margin-top: 20px;font-weight: bold; font-size: medium">
         <label>{{form.descripcion_indicador.label_tag}}</label>
         {{form.descripcion_indicador}}
+        <div class="invalid-feedback">
+            {{ form.descripcion_indicador.errors }}
+        </div>
     </div>
 
     <div class="numberCircle" style="margin-top: 40px;">2</div>
     <div style="margin-top: 20px;font-weight: bold; font-size: medium">
         <label>Método de Cálculo</label>
-        
     </div>
 
     <div class="numberCircle" style="margin-top: 40px;">3</div>
     <div style="margin-top: 20px;font-weight: bold; font-size: medium">
         <label>{{form.periodicidad.label_tag}}</label>
         {{form.periodicidad}}
+        <div class="invalid-feedback">
+            {{ form.periodicidad.errors }}
+        </div>
     </div>
+
+    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <button class="btn btn-lg btn-primary" type="submit">Guardar</button>
+    </div>
+
+    {% if form.errors %}
+        <div class="alert alert-danger text-left">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %} 
+</form>
 
 {% endblock content %}
