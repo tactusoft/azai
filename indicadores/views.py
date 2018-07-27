@@ -64,8 +64,9 @@ class IndicadorCreate(LoginRequiredMixin, CreateView):
         return kwargs
 
     def form_valid(self, form):
-        obj_tipo_indicador = TipoIndicador.objects.get(id=tipo_indicador)
-        form.instance.tipo_indicador = obj_tipo_indicador
-        form.save()
-        return super(IndicadorCreate, self).form_valid(form)    
+        response = super(IndicadorCreate, self).form_valid(form)
+        #obj_tipo_indicador = TipoIndicador.objects.get(id=tipo_indicador)
+        #form.instance.tipo_indicador = obj_tipo_indicador
+        #form.save()
+        return response  
 
