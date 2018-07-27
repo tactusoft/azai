@@ -31,6 +31,10 @@ class IndicadorList(LoginRequiredMixin, ListView):
     model = Indicador
     context_object_name = 'indicador'
     ordering = ['nombre']
+
+    def get_queryset(self):
+        tipo_indicador = self.kwargs['tipo_indicador']
+        self.request.session['tipo_indicador'] = tipo_indicador
     
     def get_context_data(self, **kwargs):
         context = super(IndicadorList, self).get_context_data(**kwargs)
@@ -38,17 +42,20 @@ class IndicadorList(LoginRequiredMixin, ListView):
         table = IndicadorTable(Indicador.objects.all().filter(tipo_indicador_id=tipo_indicador))
         RequestConfig(self.request, paginate={'per_page': 30}).configure(table)
         context['table'] = table
+        context['tipo_indicador'] = tipo_indicador
         return context
-
-    def get_queryset(self):
-        tipo_indicador = self.kwargs['tipo_indicador']
-        self.request.session['tipo_indicador'] = tipo_indicador
 
 class IndicadorCreate(LoginRequiredMixin, CreateView):
     model = Indicador
     form_class = CustomIndicadorCreationForm
     success_url = reverse_lazy('indicador_list')
     template_name_suffix = '_create'
+
+    def get_context_data(self, **kwargs):
+        context = super(IndicadorCreate, self).get_context_data(**kwargs)
+        tipo_indicador = self.request.session['tipo_indicador']
+        context['tipo_indicador'] = tipo_indicador
+        return context
 
     def get_form_kwargs(self):
         tipo_indicador = self.request.session.get('tipo_indicador')
@@ -59,5 +66,6 @@ class IndicadorCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         obj_tipo_indicador = TipoIndicador.objects.get(id=tipo_indicador)
         form.instance.tipo_indicador = obj_tipo_indicador
+        form.save()
         return super(IndicadorCreate, self).form_valid(form)    
 
