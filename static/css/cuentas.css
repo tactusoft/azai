@@ -51,3 +51,7 @@ form img {
 form button {
   margin-bottom: 10px;
 }
+
+#content {
+  width: 100% !important;
+}
