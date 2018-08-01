@@ -7,98 +7,66 @@
 {% block title %}Tipo de Indicadores{% endblock title %} 
 
 {% block content %}
-    {% if table.page %}
-    <div class="table-container">
-    {% endif %}
-
     {% block table %}
-    <table id="table" class="table table-hover" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
-        {% block table.thead %}
-        <thead>
-            <tr>
-                <th colspan="4">
-                    <div class="row">
-                        <div class="col-8">
-                            <h2>Tipo de Indicadores</h2>
+    <div class="table-responsive">
+        <table id="table" class="table table-hover" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
+            {% block table.thead %}
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2>Tipo de Indicadores</h2>
+                            </div>
                         </div>
-                    </div>
-                </th>
-            </tr>
+                    </th>
+                </tr>
 
-            <tr>
-                {% for column in table.columns %} 
-                    <th {{ column.attrs.th.as_html }}>{{ column.header|title }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        {% endblock table.thead %}
-
-        {% block table.tbody %}
-        <tbody>
-            {% for row in table.page.object_list|default:table.rows %} 
-                {# support pagination #} 
-                {% block table.tbody.row %}
-                
-                <tr class="clickable-row">
-                    {% for column, cell in row.items %}
-                    <td>{{ cell }}</td>
+                <tr>
+                    {% for column in table.columns %} 
+                        <th {{ column.attrs.th.as_html }}>{{ column.header|title }}</th>
                     {% endfor %}
                 </tr>
-                {% endblock table.tbody.row %} 
-                {% empty %} 
-                
-                {% if table.empty_text %} 
-                    {% block table.tbody.empty_text %}
+            </thead>
+            {% endblock table.thead %}
+
+            {% block table.tbody %}
+            <tbody>
+                {% for row in table.page.object_list|default:table.rows %} 
+                    {# support pagination #} 
+                    {% block table.tbody.row %}
+                    
                     <tr>
-                        <td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td>
+                        {% for column, cell in row.items %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
                     </tr>
-                    {% endblock table.tbody.empty_text %} 
-                {% endif %} 
-            {% endfor %}
-        </tbody>
-        {% endblock table.tbody %} 
-        
-        {% block table.tfoot %}
-        <tfoot></tfoot>
-        {% endblock table.tfoot %}
-    </table>
+                    {% endblock table.tbody.row %} 
+                    {% empty %} 
+                    
+                    {% if table.empty_text %} 
+                        {% block table.tbody.empty_text %}
+                        <tr>
+                            <td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td>
+                        </tr>
+                        {% endblock table.tbody.empty_text %} 
+                    {% endif %} 
+                {% endfor %}
+            </tbody>
+            {% endblock table.tbody %} 
+            
+            {% block table.tfoot %}
+            <tfoot></tfoot>
+            {% endblock table.tfoot %}
+        </table>
+    </div>    
     {% endblock table %} 
     
     {% if table.page %} 
         {% block pagination %} 
         {# bootstrap_pagination table.page url=request.get_full_path #} 
         {% endblock pagination %}
-    </div>
     {% endif %}
-
-    <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
-        <li>
-            <div class="col-2" style="max-width: 100% !important;">
-                <a class="nav-link" href="#">
-                    <span data-feather="eye"></span>
-                    Ver
-                </a>
-            </div>
-        </li>
-        <li class="dropdown-divider"></li>
-        <li>
-            <div class="col-2" style="max-width: 100% !important;">
-                <a class="nav-link" href="#">
-                    <span data-feather="edit"></span>
-                    Editar
-                </a>
-            </div>
-        </li>
-        <li class="dropdown-divider"></li>
-        <li>
-            <div class="col-2" style="max-width: 100% !important;">
-                <a class="nav-link" href="#">
-                    <span data-feather="trash"></span>
-                    Borrar
-                </a>
-            </div>
-        </li>
-    </ul>
 {% endblock content %}
 
 {% block javascript %}

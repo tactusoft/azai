@@ -7,12 +7,9 @@
 {% block title %}Nuevo Indicador{% endblock title %} 
 
 {% block content %}
-    {% if table.page %}
-    <div class="table-container">
-    {% endif %}
 
     {% block table %}
-    <table id="table" class="table table-hover" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
+    <table id="table" class="table" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
         {% block table.thead %}
         <thead>
             <tr>
@@ -20,11 +17,7 @@
                     <div class="row">
                         <div class="col-8">
                             <h2>Nuevo Indicador</h2>
-                        </div>
-                        <div class="col-2">
-                            <a href="{% url 'indicador_list' 1 %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
-                                Regresar
-                            </a>
+                            <a href="{% url 'indicador_list' tipo_indicador %}">Volver</a>
                         </div>
                     </div>
                 </th>
@@ -68,64 +61,47 @@
         {% endblock table.tfoot %}
     </table>
     {% endblock table %} 
-    
-    {% if table.page %} 
-        {% block pagination %} 
-        {# bootstrap_pagination table.page url=request.get_full_path #} 
-        {% endblock pagination %}
-    </div>
-    {% endif %}
 
-    <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
-        <li>
-            <div class="col-2" style="max-width: 100% !important;">
-                <a class="nav-link" href="#">
-                    <span data-feather="eye"></span>
-                    Ver
-                </a>
+    <form method="POST" class="post-form">{% csrf_token %}
+        <div class="numberCircle">1</div>
+        <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+        <label>{{form.nombre_indicador.label_tag}}</label>
+        {{form.nombre_indicador}}
+        <div class="invalid-feedback">
+                {{ form.nombre_indicador.errors }}
             </div>
-        </li>
-        <li class="dropdown-divider"></li>
-        <li>
-            <div class="col-2" style="max-width: 100% !important;">
-                <a class="nav-link" href="#">
-                    <span data-feather="edit"></span>
-                    Editar
-                </a>
+        </div>
+        <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+            <label>{{form.descripcion_indicador.label_tag}}</label>
+            {{form.descripcion_indicador}}
+            <div class="invalid-feedback">
+                {{ form.descripcion_indicador.errors }}
             </div>
-        </li>
-        <li class="dropdown-divider"></li>
-        <li>
-            <div class="col-2" style="max-width: 100% !important;">
-                <a class="nav-link" href="#">
-                    <span data-feather="trash"></span>
-                    Borrar
-                </a>
+        </div>
+
+        <div class="numberCircle" style="margin-top: 40px;">2</div>
+        <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+            <label>Método de Cálculo</label>
+        </div>
+
+        <div class="numberCircle" style="margin-top: 40px;">3</div>
+        <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+            <label>{{form.periodicidad.label_tag}}</label>
+            {{form.periodicidad}}
+            <div class="invalid-feedback">
+                {{ form.periodicidad.errors }}
             </div>
-        </li>
-    </ul>
+        </div>
 
+        <div style="margin-top: 20px;font-weight: bold; font-size: medium">
+            <button class="btn btn-lg btn-primary" type="submit">Guardar</button>
+        </div>
 
-    <div class="numberCircle">1</div>
-    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
-       <label>{{form.nombre_indicador.label_tag}}</label>
-       {{form.nombre_indicador}}
-    </div>
-    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
-        <label>{{form.descripcion_indicador.label_tag}}</label>
-        {{form.descripcion_indicador}}
-    </div>
-
-    <div class="numberCircle" style="margin-top: 40px;">2</div>
-    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
-        <label>Método de Cálculo</label>
-        
-    </div>
-
-    <div class="numberCircle" style="margin-top: 40px;">3</div>
-    <div style="margin-top: 20px;font-weight: bold; font-size: medium">
-        <label>{{form.periodicidad.label_tag}}</label>
-        {{form.periodicidad}}
-    </div>
+        {% if form.errors %}
+            <div class="alert alert-danger text-left">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %} 
+    </form>
 
 {% endblock content %}

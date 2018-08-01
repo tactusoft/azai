@@ -65,15 +65,19 @@
         $("#table td").contextMenu({
             menuSelector: "#contextMenu",
             menuSelected: function (invokedOn, selectedMenu) {
-                if(selectedMenu.text().trim()=="Ver"){
-                    window.location.replace("http://localhost:8000/azai/usuarios/view/"+invokedOn.text());
+                var id = invokedOn.parent().children(':first').text();
+                var url = window.location.href;
+                url = url.replace('#', '');
+                if(selectedMenu.text().trim()=="Ver") {
+                    url = url + "view/" + id;
                 }
-                if(selectedMenu.text().trim()=="Editar"){
-                    window.location.replace("http://localhost:8000/azai/usuarios/edit/"+invokedOn.text());
+                if(selectedMenu.text().trim()=="Editar") {
+                    url = url + "edit/" + id;
                 }
-                if(selectedMenu.text().trim()=="Borrar"){
-                    window.location.replace("http://localhost:8000/azai/usuarios/delete/"+invokedOn.text());
+                if(selectedMenu.text().trim()=="Borrar") {
+                    url = url + "delete/" + id;
                 }
+                window.location.href = url;
             }
         });
     </script>
