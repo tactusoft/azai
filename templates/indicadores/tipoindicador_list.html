@@ -7,10 +7,6 @@
 {% block title %}Tipo de Indicadores{% endblock title %} 
 
 {% block content %}
-    {% if table.page %}
-    <div class="table-container">
-    {% endif %}
-
     {% block table %}
     <div class="table-responsive">
         <table id="table" class="table table-hover" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
@@ -40,7 +36,7 @@
                     {# support pagination #} 
                     {% block table.tbody.row %}
                     
-                    <tr class="clickable-row">
+                    <tr>
                         {% for column, cell in row.items %}
                         <td>{{ cell }}</td>
                         {% endfor %}
@@ -70,7 +66,6 @@
         {% block pagination %} 
         {# bootstrap_pagination table.page url=request.get_full_path #} 
         {% endblock pagination %}
-    </div>
     {% endif %}
 {% endblock content %}
 

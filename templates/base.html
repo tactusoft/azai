@@ -83,19 +83,19 @@
 
           <ul class="list-unstyled components">
               <li>
-                  <a href="#">Dashboard</a>
+                  <a class="link_style" href="#">Dashboard</a>
               </li>
               <li>
-                  <a href="#">Reportes</a>
+                  <a class="link_style" href="#">Reportes</a>
               </li>
               <li>
-                  <a href="{% url "tipo_indicador_list" %}">Indicadores</a>
+                  <a class="link_style" href="{% url "tipo_indicador_list" %}">Indicadores</a>
               </li>
               <li>
-                <a href="#">Cargar Info</a>
+                <a class="link_style" href="#">Cargar Info</a>
               </li>
               <li>
-                <a href="{% url "usuario_list" %}">Usuarios</a>
+                <a class="link_style" href="{% url "usuario_list" %}">Usuarios</a>
               </li>
           </ul>
       </nav>
@@ -110,10 +110,13 @@
 
                   <button type="button" id="sidebarCollapse" class="btn btn-info">
                       <i class="fas fa-align-left"></i>
-                      <span>Ocultar</span>
+                      <span id="toggleLabel">Ocultar</span>
                   </button>
                   
-                  <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <button class="btn btn-dark d-inline-block d-lg-none ml-auto" 
+                    type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" 
+                    aria-label="Toggle navigation">
                       <i class="fas fa-align-justify"></i>
                   </button>
 

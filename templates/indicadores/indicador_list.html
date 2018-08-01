@@ -17,19 +17,22 @@
             {% block table.thead %}
             <thead>
                 <tr>
-                    <th colspan="4">
+                    <th colspan="2">
                         <div class="row">
                             <div class="col-8">
                                 <h2>Indicadores</h2>
+                                <a href="{% url 'tipo_indicador_list' %}">Volver</a>
                             </div>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th colspan="2">
+                        <div class="row">
                             <div class="col-2">
                                 <a href="{% url 'indicador_new' tipo_indicador %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
                                     Crear Indicador
-                                </a>
-                            </div>
-                            <div class="col-2">
-                                <a href="{% url 'tipo_indicador_list' %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
-                                    Regresar
                                 </a>
                             </div>
                         </div>
@@ -50,7 +53,7 @@
                     {# support pagination #} 
                     {% block table.tbody.row %}
                     
-                    <tr class="clickable-row">
+                    <tr>
                         {% for column, cell in row.items %}
                         <td>{{ cell }}</td>
                         {% endfor %}
