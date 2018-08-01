@@ -4,7 +4,7 @@ from .models import Usuario
 
 class UsuarioTable(tables.Table):
     nombres = tables.LinkColumn(accessor='get_full_name', viewname='usuario_view',  args=[A('pk')])
-    email = tables.EmailColumn()
+    email = tables.Column()
     fecha_modificacion = tables.DateTimeColumn("DATETIME_FORMAT",False)
     
     class Meta:

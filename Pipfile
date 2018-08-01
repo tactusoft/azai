@@ -7,12 +7,7 @@ name = "pypi"
 django = "*"
 gunicorn = "*"
 django-heroku = "*"
-<<<<<<< HEAD
-"django-tables2" = "*"
-pylint = "*"
-=======
 django-tables2 = "*"
->>>>>>> cfc686d5ad79343e56a273f7ff4f16b87fa8aba9
 
 [dev-packages]
 pylint = "*"

@@ -22,14 +22,8 @@
                             <h2>{% block title_tabla %}title_tabla{% endblock title_tabla %}</h2>
                         </div>
                         <div class="col-1">
-                            <a class="nav-link" href="#">
-                                <span data-feather="edit"></span>
-                            </a>
                         </div>
                         <div class="col-1">
-                            <a class="nav-link" href="#">
-                                <span data-feather="trash"></span>
-                            </a>
                         </div>
                         <div class="col-2">
                             <a href="{% block add_new_record_url %}{% endblock add_new_record_url %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
@@ -86,7 +80,7 @@
     </div>
     {% endif %}
 
-    <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
+    {% comment %} <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
         <li>
             <div class="col-2" style="max-width: 100% !important;">
                 <a class="nav-link" href="#">
@@ -113,9 +107,8 @@
                 </a>
             </div>
         </li>
-    </ul>
+    </ul> {% endcomment %}
 {% endblock content %}
 
 {% block javascript %}
-{% include 'base/js_table.html' %}
 {% endblock javascript %}

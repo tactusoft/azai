@@ -1,49 +1,90 @@
-{% extends 'base_detail.html' %}
-
+{% extends 'base_detail.html' %} 
 {% block title %}Ver Usuario{% endblock title %} 
 {% block subtitle %}<h2>Ver usuario</h2>{% endblock subtitle %} 
 {% block url_back %}{% url 'usuario_list' %}{% endblock url_back %} 
 
-{% block detail_content %}
-    <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div class="col-md-6 mb-3">
-                <h6 class="my-0">Rol</h6>
-                <small class="text-muted">{{ object.grupo }}</small>
-            </div>
-            <div class="col-md-6 mb-3">
-                <h6 class="my-0">Correo</h6>
-                <small class="text-muted">{{ object.email }}</small>
-            </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div class="col-md-6 mb-3">
-                <h6 class="my-0">Nombres</h6>
-                <small class="text-muted">{{ object.first_name }}</small>
-            </div>
-            <div class="col-md-6 mb-3">
-                <h6 class="my-0">Apellidos</h6>
-                <small class="text-muted">{{ object.last_name }}</small>
-            </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div class="col-md-6 mb-3">
-                <h6 class="my-0">Número identificación</h6>
-                <small class="text-muted">{{ object.numero_identificacion }}</small>
-            </div>
-            <div class="col-md-6 mb-3">
-                <h6 class="my-0">Telefono</h6>
-                <small class="text-muted">{{ object.telefono }}</small>
-            </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div class="col-md-6 mb-3">
-                <h6 class="my-0">Ocupación</h6>
-                <small class="text-muted">{{ object.ocupacion }}</small>
-            </div>
-        </li>
-    </ul>
-{% endblock detail_content %}
+{% block detail_content%}
+<ul class="list-group mb-3">
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <div class="col-md-6 mb-3">
+            <h6 class="my-0">Rol</h6>
+            <small class="text-muted">{{ object.grupo }}</small>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h6 class="my-0">Correo</h6>
+            <small class="text-muted">{{ object.email }}</small>
+        </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <div class="col-md-6 mb-3">
+            <h6 class="my-0">Nombres</h6>
+            <small class="text-muted">{{ object.first_name }}</small>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h6 class="my-0">Apellidos</h6>
+            <small class="text-muted">{{ object.last_name }}</small>
+        </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <div class="col-md-6 mb-3">
+            <h6 class="my-0">Número identificación</h6>
+            <small class="text-muted">{{ object.numero_identificacion }}</small>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h6 class="my-0">Telefono</h6>
+            <small class="text-muted">{{ object.telefono }}</small>
+        </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <div class="col-md-6 mb-3">
+            <h6 class="my-0">Ocupación</h6>
+            <small class="text-muted">{{ object.ocupacion }}</small>
+        </div>
+    </li>
+</ul>
+<hr class="mb-4">
+<div class="row">
+    <div class="col-md-6 mb-3">
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn-primary btn-lg btn-block" href="{% url 'usuario_edit' pk=object.id %}" role="button">Editar</a>
+    </div>
+    <div class="col-md-3 mb-2">
+        <a class="btn btn btn-secondary btn-lg btn-block" href="{% url 'usuario_delete' pk=object.id %}" role="button" data-toggle="modal" data-target="#confirm-delete">Borrar</a>
+    </div>
+</div>
 
-{% block detail_command %}
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Confirmar eliminación</h4>
+            </div>
+        
+            <div class="modal-body">
+                <p>Está a punto de eliminar un usuario, este procedimiento es irreversible.</p>
+                <p>¿Desea continuar?</p>
+                <p class="debug-url"></p>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+                <form class="needs-validation" action="{% url 'usuario_delete' object.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-ok"  >Borrar</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock detail_content %} 
+{% block detail_command %} 
 {% endblock detail_command %}
+
+{% block javascript %}
+
+{% endblock javascript %}
