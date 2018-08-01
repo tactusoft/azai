@@ -156,6 +156,13 @@
         {% endblock container %}
 
         {% block content %}
+            {% if user.is_anonymous %}
+            <div style="text-align: center;vertical-align: middle">
+                <a class="link_style" href="{% url "login" %}">
+                    Conectarse
+                </a>
+            </div>
+            {% endif %}
         {% endblock content %}
         
         {% block pagination %}
