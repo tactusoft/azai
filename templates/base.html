@@ -83,19 +83,34 @@
 
           <ul class="list-unstyled components">
               <li>
-                  <a class="link_style" href="#">Dashboard</a>
+                  <a class="link_style" href="#">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                  </a>
               </li>
               <li>
-                  <a class="link_style" href="#">Reportes</a>
+                  <a class="link_style" href="#">
+                    <i class="fas fa-copy"></i>  
+                    Reportes
+                  </a>
               </li>
               <li>
-                  <a class="link_style" href="{% url "tipo_indicador_list" %}">Indicadores</a>
+                  <a class="link_style" href="{% url "tipo_indicador_list" %}">
+                    <i class="fas fa-check"></i>
+                    Indicadores
+                  </a>
               </li>
               <li>
-                <a class="link_style" href="#">Cargar Info</a>
+                <a class="link_style" href="#">
+                    <i class="fas fa-upload"></i>
+                    Cargar Info
+                </a>
               </li>
               <li>
-                <a class="link_style" href="{% url "usuario_list" %}">Usuarios</a>
+                <a class="link_style" href="{% url "usuario_list" %}">
+                    <i class="fas fa-users"></i>
+                    Usuarios
+                </a>
               </li>
           </ul>
       </nav>
@@ -108,31 +123,32 @@
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
               <div class="container-fluid">
 
-                  <button type="button" id="sidebarCollapse" class="btn btn-info">
-                      <i class="fas fa-align-left"></i>
-                      <span id="toggleLabel">Ocultar</span>
-                  </button>
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                   
-                  <button class="btn btn-dark d-inline-block d-lg-none ml-auto" 
-                    type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
-                    aria-controls="navbarSupportedContent" aria-expanded="false" 
-                    aria-label="Toggle navigation">
-                      <i class="fas fa-align-justify"></i>
-                  </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" 
+                type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" 
+                aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
 
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="nav navbar-nav ml-auto">
-                          <li class="nav-item">
-                              <a class="nav-link" href="#">{{ user.email }}</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="{% url 'password_change' %}">{% trans 'Change password' %}</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="{% url 'logout' %}">{% trans 'Log out' %}</a>
-                          </li>
-                      </ul>
-                  </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ user.email }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'password_change' %}">{% trans 'Change password' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">{% trans 'Log out' %}</a>
+                        </li>
+                    </ul>
+                </div>
               </div>
           </nav>
         {% endif %}
