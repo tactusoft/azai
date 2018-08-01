@@ -22,9 +22,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
         $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-            $(this).toggleClass('active');
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            var label = "Ocultar";
+            if ($('#toggleLabel').html()=='Ocultar') {
+                label = "Mostrar";
+            }
+            $('#toggleLabel').html(label);
         });
     });
 </script>

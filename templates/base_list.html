@@ -12,65 +12,67 @@
     {% endif %}
 
     {% block table %}
-    <table id="table" class="table table-hover" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
-        {% block table.thead %}
-        <thead>
-            <tr>
-                <th colspan="4">
-                    <div class="row">
-                        <div class="col-8">
-                            <h2>{% block title_tabla %}title_tabla{% endblock title_tabla %}</h2>
+    <div class="table-responsive">
+        <table id="table" class="table table-hover" {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
+            {% block table.thead %}
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2>{% block title_tabla %}title_tabla{% endblock title_tabla %}</h2>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-2">
+                                <a href="{% block add_new_record_url %}{% endblock add_new_record_url %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
+                                    {% block add_new_record_label %}{% endblock add_new_record_label %}
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-1">
-                        </div>
-                        <div class="col-1">
-                        </div>
-                        <div class="col-2">
-                            <a href="{% block add_new_record_url %}{% endblock add_new_record_url %}" class="btn" style="color: white; background-color: #2A9FD8;border: 1px solid #2A9FD8">
-                                {% block add_new_record_label %}{% endblock add_new_record_label %}
-                            </a>
-                        </div>
-                    </div>
-                </th>
-            </tr>
+                    </th>
+                </tr>
 
-            <tr>
-                {% for column in table.columns %} 
-                    <th {{ column.attrs.th.as_html }}>{{ column.header|title }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        {% endblock table.thead %}
-
-        {% block table.tbody %}
-        <tbody>
-            {% for row in table.page.object_list|default:table.rows %} 
-                {# support pagination #} 
-                {% block table.tbody.row %}
-                
-                <tr class="clickable-row">
-                    {% for column, cell in row.items %}
-                    <td>{{ cell }}</td>
+                <tr>
+                    {% for column in table.columns %} 
+                        <th {{ column.attrs.th.as_html }}>{{ column.header|title }}</th>
                     {% endfor %}
                 </tr>
-                {% endblock table.tbody.row %} 
-                {% empty %} 
-                
-                {% if table.empty_text %} 
-                    {% block table.tbody.empty_text %}
+            </thead>
+            {% endblock table.thead %}
+
+            {% block table.tbody %}
+            <tbody>
+                {% for row in table.page.object_list|default:table.rows %} 
+                    {# support pagination #} 
+                    {% block table.tbody.row %}
+                    
                     <tr>
-                        <td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td>
+                        {% for column, cell in row.items %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
                     </tr>
-                    {% endblock table.tbody.empty_text %} 
-                {% endif %} 
-            {% endfor %}
-        </tbody>
-        {% endblock table.tbody %} 
-        
-        {% block table.tfoot %}
-        <tfoot></tfoot>
-        {% endblock table.tfoot %}
-    </table>
+                    {% endblock table.tbody.row %} 
+                    {% empty %} 
+                    
+                    {% if table.empty_text %} 
+                        {% block table.tbody.empty_text %}
+                        <tr>
+                            <td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td>
+                        </tr>
+                        {% endblock table.tbody.empty_text %} 
+                    {% endif %} 
+                {% endfor %}
+            </tbody>
+            {% endblock table.tbody %} 
+            
+            {% block table.tfoot %}
+            <tfoot></tfoot>
+            {% endblock table.tfoot %}
+        </table>
+    </div>
     {% endblock table %} 
     
     {% if table.page %} 
